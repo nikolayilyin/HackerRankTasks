@@ -142,23 +142,23 @@ namespace XUnitTestProject.Algorithms.GraphTheory
             Assert.Equal(23, jttm.WaysCount);
         }
 
-        //[Fact]
-        //public void Test101()
-        //{
-        //    var jttm = new JourneyToTheMoon();
+        [Fact]
+        public void Test101()
+        {
+            var jttm = new JourneyToTheMoon();
 
-        //    var n = 500;
-        //    var p = 500;
-        //    var pairs = inputpairsfortest101.Split(new[] { " ", "\r\n" }, System.StringSplitOptions.RemoveEmptyEntries);
+            var n = 500;
+            var p = 500;
+            var pairs = inputpairsfortest101.Split(new[] { " ", "\r\n" }, System.StringSplitOptions.RemoveEmptyEntries);
 
-        //    jttm.N = n;
-        //    jttm.P = p;
+            jttm.N = n;
+            jttm.P = p;
 
-        //    for (var i = 0; i < pairs.Length; i += 2)
-        //        jttm.AddPair(long.Parse(pairs[i]), long.Parse(pairs[i + 1]));
+            for (var i = 0; i < pairs.Length; i += 2)
+                jttm.AddPair(long.Parse(pairs[i]), long.Parse(pairs[i + 1]));
 
-        //    Assert.Equal(43723, jttm.PermissibleWaysCount);
-        //}
+            Assert.Equal(43723, jttm.WaysCount);
+        }
 
         #region inputpairsfortest101
         static string inputpairsfortest101 =

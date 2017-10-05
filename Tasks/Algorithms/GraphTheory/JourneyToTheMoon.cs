@@ -17,7 +17,7 @@ namespace Tasks.Algorithms.GraphTheory
 
         public long P { get; set; }
 
-        public long WaysCount { get { return CalcWaysCountSlow(); } }
+        public long WaysCount { get { return CalcWaysCountFast(); } }
 
         public void AddPair(long a1, long a2)
         {
@@ -92,10 +92,8 @@ namespace Tasks.Algorithms.GraphTheory
 
             var missinglength = N - hssum;
 
-            if (arr.Length == 1)
-                sum = arr[0] * missinglength;
-            else
-                sum += sum * missinglength;
+            for (long i = 0; i < arr.Length; i++)
+                sum += arr[i] * missinglength;
 
             var missingSum = 0L;
             for (long i = 1; i < missinglength; i++)
