@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Tasks.Algorithms.GraphTheory;
+using XUnitTestProject.Algorithms.GraphTheory;
 
 namespace Runner
 {
@@ -12,9 +13,7 @@ namespace Runner
 
             try
             {
-                var jttm = new JourneyToTheMoon();
-                jttm.ConsoleReadInput();
-                jttm.WaysCount.ToString().Wl();
+
             }
             catch (Exception ex)
             {
