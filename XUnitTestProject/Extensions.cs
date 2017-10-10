@@ -44,5 +44,24 @@ namespace XUnitTestProject
                 writer.WriteLine(" };\r\n\r\n");
             }
         }
+
+        public static int ToInt(this string inputnumber)
+        {
+            int.TryParse(inputnumber, out var result);
+            return result;
+        }
+
+        public static IEnumerator<string> ReadLineIEnumerator(this string inputstring)
+        {
+            var input = inputstring.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+            IEnumerable<string> Read()
+            {
+                foreach (var line in input)
+                    yield return line;
+            }
+
+            return Read().GetEnumerator();
+        }
     }
 }

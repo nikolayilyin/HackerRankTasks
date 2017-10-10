@@ -55,15 +55,7 @@ namespace XUnitTestProject.Algorithms.GraphTheory
         [Fact]
         public void Test3()
         {
-            var input = RoadsAndLibrariesRawTestData1.input.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-
-            IEnumerable<string> Read()
-            {
-                foreach (var line in input)
-                    yield return line;
-            }
-
-            var enumerator = Read().GetEnumerator();
+            var enumerator = RoadsAndLibrariesRawTestData1.input.ReadLineIEnumerator();
 
             string ReadLine()
             {
