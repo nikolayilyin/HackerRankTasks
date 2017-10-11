@@ -20,18 +20,12 @@ namespace XUnitTestProject.Algorithms.GraphTheory
             }
 
             var initarray = ReadLine().Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-
-            var ss = new SynchronousShopping
-            {
-                NumberOfShoppingCentres = initarray[0].ToInt(),
-                NumberOfRoads = initarray[1].ToInt(),
-                NumberOfTypesOfFish = initarray[2].ToInt()
-            };
+            var ss = new SynchronousShopping(initarray[0].ToInt(), initarray[1].ToInt(), initarray[2].ToInt());
 
             for (int i = 0; i < ss.NumberOfShoppingCentres; i++)
             {
                 var sc = ReadLine().Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-                ss.AddShoppingCenter(i, sc[1].ToInt());
+                ss.AddShoppingCenter(i + 1, sc);
             }
 
             for (int i = 0; i < ss.NumberOfRoads; i++)
