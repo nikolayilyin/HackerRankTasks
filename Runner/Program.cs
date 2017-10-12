@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Tasks;
 using Tasks.Algorithms.GraphTheory;
 using XUnitTestProject.Algorithms.GraphTheory;
 

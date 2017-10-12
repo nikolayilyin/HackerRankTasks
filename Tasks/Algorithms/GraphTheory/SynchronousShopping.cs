@@ -15,6 +15,17 @@ namespace Tasks.Algorithms.GraphTheory
             NumberOfRoads = numberOfRoads;
         }
 
+        public string ToDotGraph()
+        {
+            var sb = new StringBuilder("graph G {\n");
+            for (var i = 1; i <= NumberOfShoppingCentres; i++)
+                foreach (var neighbor in _shoppingCentres[i].Neighbors.Where(x => x.Number > i))
+                    sb.AppendLine("\t{0} -- {1}  [label=\"{2}\"]".F(i, neighbor.Number, neighbor.Cost));
+
+            sb.AppendLine("}");
+            return sb.ToString();
+        }
+
         private int _nSC = 0;
         private ShoppingCenter[] _shoppingCentres; // some sort of graph
 
@@ -86,8 +97,9 @@ namespace Tasks.Algorithms.GraphTheory
             }
         }
 
-        public List<int> FindWay(int start, HashSet<int> to)
+        public List<int> FindWay(int start, HashSet<int> to, out long wayCost)
         {
+            wayCost = 0;
             var openVertices = new List<Path> { new Path() { Cost = 0, Number = start } };
             var closedVertices = new HashSet<int>();
 
@@ -105,14 +117,19 @@ namespace Tasks.Algorithms.GraphTheory
                 return true;
             }
 
-            List<int> RestorePath(int finish)
+            List<int> RestorePath(int finish, out long wCost)
             {
+                wCost = 0;
                 var path = new List<int> { finish };
-                var current = finish;
 
+                var backstep = moveMap[finish];
+                if (backstep != null)
+                    wCost = backstep.Cost;
+
+                var current = finish;
                 while (current != start)
                 {
-                    var backstep = moveMap[current];
+                    backstep = moveMap[current];
                     if (backstep == null)
                         break;
 
@@ -125,10 +142,11 @@ namespace Tasks.Algorithms.GraphTheory
                 return path;
             }
 
+            moveMap[start] = new Path() { Number = start, Cost = 0 };
+
             while (GetOpenVertex(out var shoppCenter))
             {
                 var neighbors = _shoppingCentres[shoppCenter.Number].Neighbors;
-
                 closedVertices.Add(shoppCenter.Number);
 
                 foreach (var neighbor in neighbors.OrderBy(x => x.Cost))
@@ -136,18 +154,22 @@ namespace Tasks.Algorithms.GraphTheory
                     if (closedVertices.Contains(neighbor.Number))
                         continue;
 
-                    moveMap[neighbor.Number] = new Path()
-                    {
-                        Cost = shoppCenter.Cost + neighbor.Cost,
-                        Number = shoppCenter.Number,
-                    };
+                    var costToNeighbor = shoppCenter.Cost + neighbor.Cost;
+
+                    var old = moveMap[neighbor.Number];
+                    if (old == null || old.Cost > costToNeighbor)
+                        moveMap[neighbor.Number] = new Path()
+                        {
+                            Cost = costToNeighbor,
+                            Number = shoppCenter.Number,
+                        };
 
                     if (to.Contains(neighbor.Number))
-                        return RestorePath(neighbor.Number);
+                        return RestorePath(neighbor.Number, out wayCost);
 
                     openVertices.Add(new Path()
                     {
-                        Cost = moveMap[neighbor.Number].Cost,
+                        Cost = costToNeighbor,
                         Number = neighbor.Number,
                     });
                 }
