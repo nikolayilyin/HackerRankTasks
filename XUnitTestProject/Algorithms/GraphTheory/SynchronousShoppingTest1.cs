@@ -20,7 +20,7 @@ namespace XUnitTestProject.Algorithms.GraphTheory
             }
 
             var initarray = ReadLine().Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-            var ss = new SynchronousShopping(initarray[0].ToInt(), initarray[1].ToInt(), initarray[2].ToInt());
+            var ss = new SynchronousShopping(int.Parse(initarray[0]), int.Parse(initarray[1]), int.Parse(initarray[2]));
 
             for (int i = 0; i < ss.NumberOfShoppingCentres; i++)
             {
@@ -31,17 +31,47 @@ namespace XUnitTestProject.Algorithms.GraphTheory
             for (int i = 0; i < ss.NumberOfRoads; i++)
             {
                 var sc = ReadLine().Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-                ss.AddRoad(sc[0].ToInt(), sc[1].ToInt(), sc[2].ToInt());
+                ss.AddRoad(int.Parse(sc[0]), int.Parse(sc[1]), int.Parse(sc[2]));
             }
+
+            var graph = ss.ToDotGraph();
 
             return ss.MinimumCost;
         }
 
         [Fact]
-        public void Test1()
+        public void Test0()
         {
             var output = TestAgainstStringInput(SynchronousShoppingTestData1.input0);
             Assert.Equal(SynchronousShoppingTestData1.output0, output);
+        }
+
+        [Fact]
+        public void Test1()
+        {
+            var output = TestAgainstStringInput(SynchronousShoppingTestData1.input1);
+            Assert.Equal(SynchronousShoppingTestData1.output1, output);
+        }
+
+        [Fact]
+        public void Test5()
+        {
+            var output = TestAgainstStringInput(SynchronousShoppingTestData1.input5);
+            Assert.Equal(SynchronousShoppingTestData1.output5, output);
+        }
+
+        [Fact]
+        public void Test6()
+        {
+            var output = TestAgainstStringInput(SynchronousShoppingTestData1.input6);
+            Assert.Equal(SynchronousShoppingTestData1.output6, output);
+        }
+
+        [Fact]
+        public void Test22()
+        {
+            var output = TestAgainstStringInput(SynchronousShoppingTestData1.input22);
+            Assert.Equal(SynchronousShoppingTestData1.output22, output);
         }
     }
 }
