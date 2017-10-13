@@ -17,6 +17,7 @@ namespace Tasks.Algorithms.GraphTheory
 
         /// <summary>
         /// http://dreampuf.github.io/GraphvizOnline/
+        /// http://graphs.grevian.org/example
         /// </summary>
         /// <returns></returns>
         public string ToDotGraph()
