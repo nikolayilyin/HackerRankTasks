@@ -16,7 +16,7 @@ namespace XUnitTestProject.Algorithms.GraphTheory
         [Fact]
         public void Test1()
         {
-            var ral = new RoadsAndLibraries
+			RoadsAndLibraries ral = new RoadsAndLibraries
             {
                 NumberOfCities = 3,
                 NumberOfRoads = 3,
@@ -34,7 +34,7 @@ namespace XUnitTestProject.Algorithms.GraphTheory
         [Fact]
         public void Test2()
         {
-            var ral = new RoadsAndLibraries
+			RoadsAndLibraries ral = new RoadsAndLibraries
             {
                 NumberOfCities = 6,
                 NumberOfRoads = 6,
@@ -55,7 +55,7 @@ namespace XUnitTestProject.Algorithms.GraphTheory
         [Fact]
         public void Test3()
         {
-            var enumerator = RoadsAndLibrariesRawTestData1.input.ReadLineIEnumerator();
+			IEnumerator<string> enumerator = RoadsAndLibrariesRawTestData1.input.ReadLineIEnumerator();
 
             string ReadLine()
             {
@@ -63,8 +63,8 @@ namespace XUnitTestProject.Algorithms.GraphTheory
                 return enumerator.Current;
             }
 
-            var sb = new StringBuilder();
-            var q = Convert.ToInt32(ReadLine());
+			StringBuilder sb = new StringBuilder();
+			int q = Convert.ToInt32(ReadLine());
 
             for (int a0 = 0; a0 < q; a0++)
             {
@@ -74,7 +74,7 @@ namespace XUnitTestProject.Algorithms.GraphTheory
                 long x = Convert.ToInt64(tokens_n[2]);
                 long y = Convert.ToInt64(tokens_n[3]);
 
-                var ral = new RoadsAndLibraries
+				RoadsAndLibraries ral = new RoadsAndLibraries
                 {
                     NumberOfCities = n,
                     NumberOfRoads = m,
@@ -93,23 +93,24 @@ namespace XUnitTestProject.Algorithms.GraphTheory
                 sb.AppendLine(ral.MinimumCost.ToString());
             }
 
-            var result = sb.ToString().Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-            var expected = RoadsAndLibrariesRawTestData1.output.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+			string[] result = sb.ToString().Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+			string[] expected = RoadsAndLibrariesRawTestData1.output.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 
             Assert.Equal(expected.Length, result.Length);
 
-            for (int i = 0; i < expected.Length; i++)
-                Assert.Equal(long.Parse(expected[i]), long.Parse(result[i]));
-        }
+            for (int i = 0; i < expected.Length; i++) {
+				Assert.Equal(long.Parse(expected[i]), long.Parse(result[i]));
+			}
+		}
 
         [Fact]
         public void Test30()
         {
-            var inparr = RoadsAndLibrariesTestData1.inputparams0;
-            var pairs = RoadsAndLibrariesTestData1.inputpairs0;
-            var output = RoadsAndLibrariesTestData1.output0;
+			int[] inparr = RoadsAndLibrariesTestData1.inputparams0;
+			int[,] pairs = RoadsAndLibrariesTestData1.inputpairs0;
+			long output = RoadsAndLibrariesTestData1.output0;
 
-            var ral = new RoadsAndLibraries
+			RoadsAndLibraries ral = new RoadsAndLibraries
             {
                 NumberOfCities = inparr[0],
                 NumberOfRoads = inparr[1],
@@ -117,20 +118,21 @@ namespace XUnitTestProject.Algorithms.GraphTheory
                 CostToRepairRoad = inparr[3]
             };
 
-            for (var i = 0; i < pairs.Length / 2; i++)
-                ral.AddCityRoad(pairs[i, 0], pairs[i, 1]);
+            for (int i = 0; i < pairs.Length / 2; i++) {
+				ral.AddCityRoad(pairs[i, 0], pairs[i, 1]);
+			}
 
-            Assert.Equal(output, ral.MinimumCost);
+			Assert.Equal(output, ral.MinimumCost);
         }
 
         [Fact]
         public void Test32()
         {
-            var inparr = RoadsAndLibrariesTestData1.inputparams2;
-            var pairs = RoadsAndLibrariesTestData1.inputpairs2;
-            var output = RoadsAndLibrariesTestData1.output2;
+			int[] inparr = RoadsAndLibrariesTestData1.inputparams2;
+			int[,] pairs = RoadsAndLibrariesTestData1.inputpairs2;
+			long output = RoadsAndLibrariesTestData1.output2;
 
-            var ral = new RoadsAndLibraries
+			RoadsAndLibraries ral = new RoadsAndLibraries
             {
                 NumberOfCities = inparr[0],
                 NumberOfRoads = inparr[1],
@@ -138,20 +140,21 @@ namespace XUnitTestProject.Algorithms.GraphTheory
                 CostToRepairRoad = inparr[3]
             };
 
-            for (var i = 0; i < pairs.Length / 2; i++)
-                ral.AddCityRoad(pairs[i, 0], pairs[i, 1]);
+            for (int i = 0; i < pairs.Length / 2; i++) {
+				ral.AddCityRoad(pairs[i, 0], pairs[i, 1]);
+			}
 
-            Assert.Equal(output, ral.MinimumCost);
+			Assert.Equal(output, ral.MinimumCost);
         }
 
         [Fact]
         public void Test33()
         {
-            var inparr = RoadsAndLibrariesTestData1.inputparams3;
-            var pairs = RoadsAndLibrariesTestData1.inputpairs3;
-            var output = RoadsAndLibrariesTestData1.output3;
+			int[] inparr = RoadsAndLibrariesTestData1.inputparams3;
+			int[,] pairs = RoadsAndLibrariesTestData1.inputpairs3;
+			long output = RoadsAndLibrariesTestData1.output3;
 
-            var ral = new RoadsAndLibraries
+			RoadsAndLibraries ral = new RoadsAndLibraries
             {
                 NumberOfCities = inparr[0],
                 NumberOfRoads = inparr[1],
@@ -159,20 +162,21 @@ namespace XUnitTestProject.Algorithms.GraphTheory
                 CostToRepairRoad = inparr[3]
             };
 
-            for (var i = 0; i < pairs.Length / 2; i++)
-                ral.AddCityRoad(pairs[i, 0], pairs[i, 1]);
+            for (int i = 0; i < pairs.Length / 2; i++) {
+				ral.AddCityRoad(pairs[i, 0], pairs[i, 1]);
+			}
 
-            Assert.Equal(output, ral.MinimumCost);
+			Assert.Equal(output, ral.MinimumCost);
         }
 
         [Fact]
         public void Test34()
         {
-            var inparr = RoadsAndLibrariesTestData1.inputparams4;
-            var pairs = RoadsAndLibrariesTestData1.inputpairs4;
-            var output = RoadsAndLibrariesTestData1.output4;
+			int[] inparr = RoadsAndLibrariesTestData1.inputparams4;
+			int[,] pairs = RoadsAndLibrariesTestData1.inputpairs4;
+			long output = RoadsAndLibrariesTestData1.output4;
 
-            var ral = new RoadsAndLibraries
+			RoadsAndLibraries ral = new RoadsAndLibraries
             {
                 NumberOfCities = inparr[0],
                 NumberOfRoads = inparr[1],
@@ -180,20 +184,21 @@ namespace XUnitTestProject.Algorithms.GraphTheory
                 CostToRepairRoad = inparr[3]
             };
 
-            for (var i = 0; i < pairs.Length / 2; i++)
-                ral.AddCityRoad(pairs[i, 0], pairs[i, 1]);
+            for (int i = 0; i < pairs.Length / 2; i++) {
+				ral.AddCityRoad(pairs[i, 0], pairs[i, 1]);
+			}
 
-            Assert.Equal(output, ral.MinimumCost);
+			Assert.Equal(output, ral.MinimumCost);
         }
 
         [Fact]
         public void Test35()
         {
-            var inparr = RoadsAndLibrariesTestData1.inputparams5;
-            var pairs = RoadsAndLibrariesTestData1.inputpairs5;
-            var output = RoadsAndLibrariesTestData1.output5;
+			int[] inparr = RoadsAndLibrariesTestData1.inputparams5;
+			int[,] pairs = RoadsAndLibrariesTestData1.inputpairs5;
+			long output = RoadsAndLibrariesTestData1.output5;
 
-            var ral = new RoadsAndLibraries
+			RoadsAndLibraries ral = new RoadsAndLibraries
             {
                 NumberOfCities = inparr[0],
                 NumberOfRoads = inparr[1],
@@ -201,20 +206,21 @@ namespace XUnitTestProject.Algorithms.GraphTheory
                 CostToRepairRoad = inparr[3]
             };
 
-            for (var i = 0; i < pairs.Length / 2; i++)
-                ral.AddCityRoad(pairs[i, 0], pairs[i, 1]);
+            for (int i = 0; i < pairs.Length / 2; i++) {
+				ral.AddCityRoad(pairs[i, 0], pairs[i, 1]);
+			}
 
-            Assert.Equal(output, ral.MinimumCost);
+			Assert.Equal(output, ral.MinimumCost);
         }
 
         [Fact]
         public void Test36()
         {
-            var inparr = RoadsAndLibrariesTestData1.inputparams6;
-            var pairs = RoadsAndLibrariesTestData1.inputpairs6;
-            var output = RoadsAndLibrariesTestData1.output6;
+			int[] inparr = RoadsAndLibrariesTestData1.inputparams6;
+			int[,] pairs = RoadsAndLibrariesTestData1.inputpairs6;
+			long output = RoadsAndLibrariesTestData1.output6;
 
-            var ral = new RoadsAndLibraries
+			RoadsAndLibraries ral = new RoadsAndLibraries
             {
                 NumberOfCities = inparr[0],
                 NumberOfRoads = inparr[1],
@@ -222,20 +228,21 @@ namespace XUnitTestProject.Algorithms.GraphTheory
                 CostToRepairRoad = inparr[3]
             };
 
-            for (var i = 0; i < pairs.Length / 2; i++)
-                ral.AddCityRoad(pairs[i, 0], pairs[i, 1]);
+            for (int i = 0; i < pairs.Length / 2; i++) {
+				ral.AddCityRoad(pairs[i, 0], pairs[i, 1]);
+			}
 
-            Assert.Equal(output, ral.MinimumCost);
+			Assert.Equal(output, ral.MinimumCost);
         }
 
         [Fact]
         public void Test38()
         {
-            var inparr = RoadsAndLibrariesTestData1.inputparams8;
-            var pairs = RoadsAndLibrariesTestData1.inputpairs8;
-            var output = RoadsAndLibrariesTestData1.output8;
+			int[] inparr = RoadsAndLibrariesTestData1.inputparams8;
+			int[,] pairs = RoadsAndLibrariesTestData1.inputpairs8;
+			long output = RoadsAndLibrariesTestData1.output8;
 
-            var ral = new RoadsAndLibraries
+			RoadsAndLibraries ral = new RoadsAndLibraries
             {
                 NumberOfCities = inparr[0],
                 NumberOfRoads = inparr[1],
@@ -243,10 +250,11 @@ namespace XUnitTestProject.Algorithms.GraphTheory
                 CostToRepairRoad = inparr[3]
             };
 
-            for (var i = 0; i < pairs.Length / 2; i++)
-                ral.AddCityRoad(pairs[i, 0], pairs[i, 1]);
+            for (int i = 0; i < pairs.Length / 2; i++) {
+				ral.AddCityRoad(pairs[i, 0], pairs[i, 1]);
+			}
 
-            Assert.Equal(output, ral.MinimumCost);
+			Assert.Equal(output, ral.MinimumCost);
         }
     }
 }

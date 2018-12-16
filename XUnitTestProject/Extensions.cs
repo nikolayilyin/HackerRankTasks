@@ -15,26 +15,30 @@ namespace XUnitTestProject
 
         public static void WritePairsToFile(this string[] pairs, [CallerMemberName] string methodName = "")
         {
-            var filename = methodName + ".txt";
+			string filename = methodName + ".txt";
 
-            if (File.Exists(filename))
-                File.Delete(filename);
+            if (File.Exists(filename)) {
+				File.Delete(filename);
+			}
 
-            using (var file = File.OpenWrite(filename))
-            using (var writer = new StreamWriter(file))
+			using (FileStream file = File.OpenWrite(filename))
+            using (StreamWriter writer = new StreamWriter(file))
             {
                 writer.WriteLine("\t\tpublic static int[,] inputp" + methodName + " = {");
 
-                var cntr = 0;
+				int cntr = 0;
 
-                for (var i = 0; i < pairs.Length; i += 2)
+                for (int i = 0; i < pairs.Length; i += 2)
                 {
-                    if (cntr == 0)
-                        writer.Write("\t\t\t");
-                    writer.Write("{" + pairs[i] + ", " + pairs[i + 1] + "}");
-                    if (cntr++ < 8)
-                        writer.Write(", ");
-                    else
+                    if (cntr == 0) {
+						writer.Write("\t\t\t");
+					}
+
+					writer.Write("{" + pairs[i] + ", " + pairs[i + 1] + "}");
+                    if (cntr++ < 8) {
+						writer.Write(", ");
+					}
+					else
                     {
                         cntr = 0;
                         writer.WriteLine(",");
@@ -47,19 +51,20 @@ namespace XUnitTestProject
 
         public static int ToInt(this string inputnumber)
         {
-            int.TryParse(inputnumber, out var result);
+            int.TryParse(inputnumber, out int result);
             return result;
         }
 
         public static IEnumerator<string> ReadLineIEnumerator(this string inputstring)
         {
-            var input = inputstring.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+			string[] input = inputstring.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 
             IEnumerable<string> Read()
             {
-                foreach (var line in input)
-                    yield return line;
-            }
+                foreach (string line in input) {
+					yield return line;
+				}
+			}
 
             return Read().GetEnumerator();
         }
