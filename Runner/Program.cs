@@ -1,30 +1,23 @@
 ﻿using System;
-using System.Linq;
+using System.Diagnostics;
 using Tasks;
-using Tasks;
 
-namespace Runner
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            "started".Wl();
+namespace Runner {
+	internal class Program {
+		private static void Main(string[] args) {
+			"started".Wl();
 
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-                "Exception catched.".Wl();
-                "{0}".Wl(ex.ToStr());
-            }
-            finally
-            {
-                "finished. press any key.".Wl();
-                Console.ReadKey();
-            }
-        }
-    }
+			try {
+				RemoveSymbolsToGetAlphabeticalOrder.Run();
+			}
+			catch (Exception ex) {
+				"Exception catched.".Wl();
+				"{0}".Wl(ex.ToStr());
+			}
+			finally {
+				"finished. press any key.".Wl();
+				Console.ReadKey();
+			}
+		}
+	}
 }
