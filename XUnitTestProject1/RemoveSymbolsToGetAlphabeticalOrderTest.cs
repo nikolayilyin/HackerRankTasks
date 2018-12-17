@@ -8,6 +8,7 @@ namespace XUnitTestProject1 {
 	public class RemoveSymbolsToGetAlphabeticalOrderTest {
 
 		[Theory]
+		[InlineData("", 0)]
 		[InlineData("banana", 3)]
 		[InlineData("banananabba", 11 - 6)]
 		[InlineData("zzbabaabcde", 11 - 7)]
