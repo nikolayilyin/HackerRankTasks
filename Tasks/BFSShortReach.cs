@@ -2,6 +2,7 @@
 using System.Linq;
 
 namespace Tasks {
+	// https://www.hackerrank.com/challenges/bfsshortreach/problem
 	public class BfsShortReach {
 		private class BfsGraph {
 			private readonly bool[] closed;
